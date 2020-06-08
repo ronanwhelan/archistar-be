@@ -21,11 +21,14 @@ class Property extends BaseModel
         );
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function analytics()
     {
-        return $this->hasMany(PropertyAnalytic::class);
+        return $this->belongsToMany(AnalyticType::class,
+            'property_analytics',
+            'analytic_type_id',
+            'property_id'
+        )
+            ->withPivot('value');
     }
+
 }

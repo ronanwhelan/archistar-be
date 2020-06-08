@@ -14,9 +14,16 @@ Following dependencies for the project
 
 ```bash
 composer install
+
+# Create the local .env file
+$ cp .env.local .env
+
 setup the .env file to include your database
+
 php artisan migrate:fresh --seed
+
 php artisan passport:install
+
 yarn build
 
 ```
@@ -26,6 +33,10 @@ yarn build
 ```bash
 From the dashboard register a user and login
 hit the route [app-url]/setup to import the test data and return an access token that you can use to test the api's using postman.
+
+#statistics route examples
+api/statistics/property?attribute=state&&value=NSW
+
 ```
 
 ## Testing

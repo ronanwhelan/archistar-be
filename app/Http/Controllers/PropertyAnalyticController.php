@@ -2,84 +2,60 @@
 
 namespace App\Http\Controllers;
 
-use App\PropertyAnalytic;
+use App\Property;
 use Illuminate\Http\Request;
 
 class PropertyAnalyticController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
-     * Show the form for creating a new resource.
+     * @param $id
      *
-     * @return \Illuminate\Http\Response
+     * @return array
      */
-    public function create()
-    {
-        //
-    }
+    public function analyticsForProperty($id){
 
+        $property = Property::findOrFail( $id );
+
+        return [
+            'data'=> $property->analytics
+        ];
+    }
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param                          $propertyId
+     * @param                          $analyticId
+     *
+     * @return bool[]
      */
-    public function store(Request $request)
+    public function store(Request $request, $propertyId , $analyticId )
     {
-        //
+        $property = Property::findOrFail( $propertyId );
+
+        $property->analytics()->attach( $analyticId,  ['value' => $request->input('value')]);
+
+        return [
+            'success' => true
+        ];
     }
 
     /**
-     * Display the specified resource.
+     * @param \Illuminate\Http\Request $request
+     * @param                          $propertyId
+     * @param                          $analyticId
      *
-     * @param  \App\PropertyAnalytic  $propertyAnalytic
-     * @return \Illuminate\Http\Response
+     * @return mixed
      */
-    public function show(PropertyAnalytic $propertyAnalytic)
+    public function update(Request $request, $propertyId , $analyticId )
     {
-        //
-    }
+        $property = Property::findOrFail($propertyId);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\PropertyAnalytic  $propertyAnalytic
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(PropertyAnalytic $propertyAnalytic)
-    {
-        //
-    }
+        $property->analytics()->updateExistingPivot( $analyticId, ['value' => $request->input('value')]);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\PropertyAnalytic  $propertyAnalytic
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, PropertyAnalytic $propertyAnalytic)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\PropertyAnalytic  $propertyAnalytic
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(PropertyAnalytic $propertyAnalytic)
-    {
-        //
+        return [
+            'success' => true
+        ];
     }
 }

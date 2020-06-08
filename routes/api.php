@@ -18,8 +18,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => ['auth:api']], function () {
+Route::group(['middleware' => ['api']], function () {
+    //Property
     Route::resource('property', 'PropertyController');
+    //Analytic Types
     Route::resource('analytic-type', 'AnalyticTypeController');
-    Route::resource('analytics', 'PropertyAnalyticController');
+    //Analytics
+    Route::get('analytics/property/{id}', 'PropertyAnalyticController@analyticsForProperty');
+    Route::post('analytics/property/{property_id}/analytic/{analytic_id}', 'PropertyAnalyticController@store');
+    Route::put('analytics/property/{property_id}/analytic/{analytic_id}', 'PropertyAnalyticController@update');
+
+    //Property Stats
+    Route::get('/statistics/property', 'PropertyStatisticsController@propertyStatisticsByAttribute');
+
 });

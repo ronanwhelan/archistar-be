@@ -19,7 +19,6 @@ class PropertyResource extends JsonResource
             'country' => $this->country,
             'state' => $this->state,
             'suburb' => $this->suburb,
-            'analytics' => $this->analytics,
         ];
     }
 }

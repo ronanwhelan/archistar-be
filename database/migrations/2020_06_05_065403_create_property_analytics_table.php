@@ -19,6 +19,8 @@ class CreatePropertyAnalyticsTable extends Migration
             $table->unsignedInteger('analytic_type_id');
             $table->text('value');
             $table->timestamps();
+            $table->foreign('property_id')->references('id')->on('properties')->onDelete('cascade');
+            $table->foreign('analytic_type_id')->references('id')->on('analytic_types')->onDelete('cascade');
         });
     }
 
