@@ -34,15 +34,14 @@ yarn build
 ## Usage
 
 ```bash
-From the dashboard register a user and login
+From the index register a user and login
 hit the route [app-url]/setup to import the test data and return an access token that you can use to test the api's using postman.
 
-If you wish to do a test without a token replace the middleware 'auth:api' with 'api'
+if you wish you can create a new token form the /home view using passports 'Personal Access Tokens'
+ 
+If you wish to do a test without a token replace the middleware 'auth:api' with 'api' in routes/api.php file
 
-#statistics route examples
-api/statistics/property?attribute=state&&value=NSW
-
-
+#App API Routes
 | GET|HEAD  | api/analytic-type
 | POST      | api/analytic-type                                          
 | GET|HEAD  | api/analytic-type/create                           
@@ -61,6 +60,11 @@ api/statistics/property?attribute=state&&value=NSW
 | DELETE    | api/property/{property}                                                              
 | GET|HEAD  | api/property/{property}/edit                                                                   
 | GET|HEAD  | api/statistics/property  
+
+#statistics route examples
+api/statistics/property?attribute=state&&value=NSW
+
+
 ```
 
 ## Testing
