@@ -12,41 +12,31 @@ Following dependencies for the project
 
 ## Installation
 
-You can install the package via composer:
-
 ```bash
-Step 1: composer install
-Step 2: php artisan passport:install
-Step 3: setup the .env file
-Step 4:
-Step 5:
+composer install
+setup the .env file to include your database
+php artisan migrate:fresh --seed
+php artisan passport:install
+yarn build
+
 ```
 
 ## Usage
 
-``` php
-$skeleton = new Spatie\Skeleton();
-echo $skeleton->echoPhrase('Hello, Spatie!');
+```bash
+From the dashboard register a user and login
+hit the route [app-url]/setup to import the test data and return an access token that you can use to test the api's using postman.
 ```
 
 ## Testing
 
 ``` bash
-composer test
+ php artisan test
 ```
-
-## Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
-## Security
-
-If you discover any security related issues, please email ronan@rowsys.com instead of using the issue tracker.
 
 ## Credits
 
 - [Ronan Whelan](https://github.com/:ronanwhelan)
-
 
 ## License
 
